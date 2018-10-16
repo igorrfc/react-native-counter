@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 import eases from 'eases';
+import format from 'number-format.js';
 
 export default class Counter extends Component {
   static propTypes = {
@@ -11,6 +12,7 @@ export default class Counter extends Component {
     time: PropTypes.number,
     easing: PropTypes.string,
     onComplete: PropTypes.func,
+    mask: PropTypes.string,
     style: PropTypes.any,
   };
 
@@ -19,6 +21,7 @@ export default class Counter extends Component {
     digits: 0,
     time: 1000,
     easing: 'linear',
+    mask: null
   };
 
   state = { value: this.props.start };
@@ -53,11 +56,12 @@ export default class Counter extends Component {
   }
 
   render() {
-    const { digits, style } = this.props;
+    const { digits, style, mask } = this.props;
     const { value } = this.state;
+    const formattedValue = mask ? format(mask, value) : value.toFixed(digits);
 
     return (
-      <Text style={style}>{value.toFixed(digits)}</Text>
+      <Text style={style}>{formattedValue}</Text>
     );
   }
 }

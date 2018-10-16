@@ -18,6 +18,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "eases": "^1.0.8"
+    "eases": "^1.0.8",
+    "number-format.js": "^1.1.11"
   }
 }
